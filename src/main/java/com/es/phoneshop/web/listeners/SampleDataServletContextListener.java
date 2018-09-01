@@ -11,13 +11,13 @@ import java.util.Currency;
 import java.util.Locale;
 
 public class SampleDataServletContextListener implements ServletContextListener {
-    private final String addSampleData = "addSampleData";
+    private static final String addSampleData = "addSampleData";
 
     @Override
     public void contextInitialized(ServletContextEvent servletContextEvent) {
         ProductDao dao = ArrayListProductDao.getInstance();
 
-        if(!Boolean.valueOf(servletContextEvent.getServletContext()
+        if (!Boolean.valueOf(servletContextEvent.getServletContext()
                 .getInitParameter(addSampleData))) {
             return;
         }

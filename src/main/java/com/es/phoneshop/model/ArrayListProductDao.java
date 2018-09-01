@@ -7,7 +7,7 @@ import java.util.stream.Collectors;
 
 public class ArrayListProductDao implements ProductDao {
 
-    private static volatile ProductDao INSTANCE;
+    private static volatile ProductDao instance;
     private List<Product> products;
 
 
@@ -42,9 +42,9 @@ public class ArrayListProductDao implements ProductDao {
     }
 
     public static synchronized ProductDao getInstance() {
-        if (INSTANCE == null) {
-            INSTANCE = new ArrayListProductDao();
+        if (instance == null) {
+            instance = new ArrayListProductDao();
         }
-        return INSTANCE;
+        return instance;
     }
 }

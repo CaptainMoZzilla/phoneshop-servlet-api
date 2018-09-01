@@ -14,12 +14,9 @@ public class ProductDetailsPageServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        String uri = request.getRequestURI();
-        String id = uri.substring(uri.lastIndexOf("/")+1);
-
         try {
-            request.setAttribute("product",productDao.getProduct(Long.valueOf(id)));
-        }catch (IllegalArgumentException e) {
+            request.setAttribute("product",productDao.getProduct(Long.valueOf(request.getPathInfo().substring(1))));
+        } catch (IllegalArgumentException e) {
             response.sendError(404);
             return;
         }
