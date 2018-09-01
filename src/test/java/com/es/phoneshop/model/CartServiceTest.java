@@ -18,8 +18,6 @@ public class CartServiceTest {
     private Product product = new Product(productId, "A1B", "desc1", new BigDecimal("123.3"),
             Currency.getInstance(Locale.UK), 1);
 
-    private CartItem cartItem = new CartItem(product, quantity);
-
     @Before
     public void clearCartItems() {
         cart.getCartItems().clear();
