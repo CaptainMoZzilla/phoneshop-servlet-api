@@ -1,9 +1,5 @@
 package com.es.phoneshop.model;
 
-import java.math.BigDecimal;
-import java.util.Currency;
-import java.util.Locale;
-
 public class CartHelper {
     private static ProductDao productDao = ArrayListProductDao.getInstance();
     private static CartService cartService = CartService.getInstance();
