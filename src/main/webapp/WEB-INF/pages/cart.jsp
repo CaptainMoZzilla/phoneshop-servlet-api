@@ -26,17 +26,19 @@
                 <td>Description</td>
                 <td>Price</td>
                 <td>Currency</td>
+                <td>Quantity</td>
             </tr>
             </thead>
             <c:forEach var="cartItem" items="${cart.cartItems}">
                 <tr>
-                    <td><c:out value="${cartItem.id}"/></td>
+                    <td><c:out value="${cartItem.product.id}"/></td>
                     <td>
-                        <a href = "<c:url value = "/products/${cartItem.id}" />"><c:out value="${cartItem.code}"/></a>
+                        <a href = "<c:url value = "/products/${cartItem.product.id}" />"><c:out value="${cartItem.product.code}"/></a>
                     </td>
-                    <td><c:out value="${cartItem.description}"/></td>
-                    <td><c:out value="${cartItem.price}"/></td>
-                    <td><c:out value="${cartItem.currency}"/></td>
+                    <td><c:out value="${cartItem.product.description}"/></td>
+                    <td><c:out value="${cartItem.product.price}"/></td>
+                    <td><c:out value="${cartItem.product.currency}"/></td>
+                    <td><c:out value="${cartItem.quantity}"/></td>
                 </tr>
             </c:forEach>
         </table>

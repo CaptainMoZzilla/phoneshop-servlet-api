@@ -30,5 +30,4 @@ public class CartServiceTest {
         assertFalse(cart.getCartItems().isEmpty());
     }
 
-
 }

@@ -52,7 +52,7 @@
     </error-page>
 
     <context-param>
-        <param-name>addSampleData</param-name>
+        <param-name>ADD_SAMPLE_DATA</param-name>
         <param-value>true</param-value>
     </context-param>
 </web-app>

@@ -21,6 +21,7 @@ public class CartService {
             synchronized (Cart.class) {
                 if(cart == null) {
                     cart = new Cart();
+                    CartHelper.addSomeCartItems(cart);
                     session.setAttribute(CART_ATTRIBUTE_NAME, cart);
                 }
             }
@@ -39,5 +40,4 @@ public class CartService {
             cart.getCartItems().set(indexOfCartItem, cartItem);
         }
     }
-
 }
