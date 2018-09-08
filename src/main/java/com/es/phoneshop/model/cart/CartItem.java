@@ -1,4 +1,6 @@
-package com.es.phoneshop.model;
+package com.es.phoneshop.model.cart;
+
+import com.es.phoneshop.model.Product;
 
 import java.util.Objects;
 
@@ -39,5 +41,4 @@ public class CartItem {
     public int hashCode() {
         return Objects.hash(product);
     }
-
 }
