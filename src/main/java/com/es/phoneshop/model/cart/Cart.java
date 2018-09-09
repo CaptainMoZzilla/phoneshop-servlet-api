@@ -15,5 +15,5 @@ public class Cart {
     }
     public synchronized void addToCart(CartItem cartItem) { cartItems.add(cartItem); }
     public synchronized void setCartItem(int index, CartItem cartItem) { cartItems.set(index, cartItem); }
-    public synchronized void removeCartItem(CartItem cartItem){ cartItems.remove(cartItem); }
+    public synchronized void removeCartItem(CartItem cartItem) { cartItems.remove(cartItem); }
 }

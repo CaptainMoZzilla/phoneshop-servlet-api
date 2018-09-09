@@ -53,5 +53,4 @@ public class RequestTools {
         request.getSession().removeAttribute("success");
         request.getSession().removeAttribute("id");
     }
-
 }
