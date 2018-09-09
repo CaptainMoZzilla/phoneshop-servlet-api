@@ -6,6 +6,8 @@ import com.es.phoneshop.model.cart.Cart;
 import com.es.phoneshop.model.cart.CartService;
 
 import javax.servlet.http.HttpServletRequest;
+import java.text.NumberFormat;
+import java.text.ParseException;
 
 public class RequestTools {
     private static CartService cartService = CartService.getInstance();
@@ -13,9 +15,10 @@ public class RequestTools {
 
     public static void setRequestAttributes(HttpServletRequest request, Long id) {
         Integer quantity;
+        NumberFormat numberFormat = NumberFormat.getIntegerInstance(request.getLocale());
 
         try {
-            quantity = Integer.valueOf(request.getParameter("quantity"));
+            quantity = numberFormat.parse(request.getParameter("quantity")).intValue();
             try {
                 Cart cart = cartService.getCart(request);
                 cartService.addToCart(cart, productDao.getProduct(id), quantity);
@@ -26,7 +29,7 @@ public class RequestTools {
                 setSessionErrorsAttributes(request,  e.getMessage(), id);
             }
 
-        } catch (IllegalArgumentException e) {
+        } catch (ParseException e) {
             setSessionErrorsAttributes(request,  "Not a number", id);
         }
     }

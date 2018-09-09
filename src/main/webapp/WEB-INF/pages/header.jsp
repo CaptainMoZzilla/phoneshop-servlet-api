@@ -2,7 +2,7 @@
 <%@ page contentType="text/html;charset=UTF-8" %>
 
 <head>
-    <link href="<c:url value="/resources/HeaderThem/HeaderTheme.css" />" rel="stylesheet">
+    <link href="<c:url value="/resources/style/HeaderThem/HeaderTheme.css" />" rel="stylesheet">
 </head>
 <div class="container">
     <nav>

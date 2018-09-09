@@ -24,7 +24,7 @@ public class SampleDataServletContextListener implements ServletContextListener 
 
         for (int i = 1; i <= 12; ++i) {
             dao.save(new Product((long) i, "A1" + i, "desc" + i, new BigDecimal(i * 100),
-                    Currency.getInstance(Locale.UK), i));
+                    Currency.getInstance(Locale.UK), i * 100));
         }
     }
 

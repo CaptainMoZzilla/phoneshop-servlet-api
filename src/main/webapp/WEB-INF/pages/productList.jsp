@@ -1,11 +1,12 @@
 <%@ page contentType="text/html;charset=UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix = "fmt" uri = "http://java.sun.com/jsp/jstl/fmt" %>
 
 <jsp:useBean id="products" type="java.util.ArrayList<com.es.phoneshop.model.Product>" scope="request"/>
 
 <html>
     <head>
-        <link href="<c:url value="/resources/PLPTheme/PLPTheme.css" />" rel="stylesheet">
+        <link href="<c:url value="/resources/style/PLPTheme/PLPTheme.css" />" rel="stylesheet">
     </head>
 
     <title>Product List</title>
@@ -42,7 +43,7 @@
                         </tr>
                         <tr>
                             <td>Price</td>
-                            <td><c:out value="${product.price}"/></td>
+                            <td><fmt:formatNumber value = "${product.price}"/></td>
                         </tr>
                         <tr>
                             <td>Currency</td>
@@ -51,7 +52,7 @@
 
                         <tr>
                             <td>Quantity</td>
-                            <td><input type="text" value="1" name="quantity" style="width: 40%"></td>
+                            <td><input type="text" value="1" name="quantity" style="width: 40%"/></td>
                         </tr>
                         <tr>
                             <td>

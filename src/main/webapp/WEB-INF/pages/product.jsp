@@ -1,12 +1,13 @@
 <%@ page contentType="text/html;charset=UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix = "fmt" uri = "http://java.sun.com/jsp/jstl/fmt" %>
 
 <jsp:useBean id="product" type="com.es.phoneshop.model.Product" scope="request"/>
 
 <html>
     <head>
         <jsp:include page="header.jsp"/>
-        <link href="<c:url value="/resources/CartThem/CartThem.css" />" rel="stylesheet">
+        <link href="<c:url value="/resources/style/CartThem/CartThem.css" />" rel="stylesheet">
     </head>
 
     <body>
@@ -29,7 +30,7 @@
                 </tr>
                 <tr>
                     <td>Price</td>
-                    <td><c:out value="${product.price}"/></td>
+                    <td><fmt:formatNumber value = "${product.price}"/></td>
                 </tr>
                 <tr>
                     <td>Currency</td>
