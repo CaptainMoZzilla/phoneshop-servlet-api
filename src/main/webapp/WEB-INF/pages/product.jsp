@@ -3,6 +3,7 @@
 <%@ taglib prefix = "fmt" uri = "http://java.sun.com/jsp/jstl/fmt" %>
 
 <jsp:useBean id="product" type="com.es.phoneshop.model.Product" scope="request"/>
+<fmt:setBundle basename="i18n.messages"/>
 
 <html>
     <head>
@@ -52,11 +53,11 @@
                 <tr>
                     <td style="border: 0px solid white">
                         <c:if test="${not empty error}">
-                            <label style="color: red;width: 200%;"><c:out value="${error}"/><label>
+                            <label style="color: red;width: 200%;"> <fmt:message key="error.${error}" /><label>
                         </c:if>
 
                         <c:if test="${not empty success}">
-                            <label style="color: green; width: 200%;"><c:out value="${success}"/><label>
+                            <label style="color: green; width: 200%;"><fmt:message key="success" /><label>
                         </c:if>
                     </td>
             </table>

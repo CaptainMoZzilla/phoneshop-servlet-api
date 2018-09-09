@@ -3,6 +3,7 @@
 <%@ taglib prefix = "fmt" uri = "http://java.sun.com/jsp/jstl/fmt" %>
 
 <jsp:useBean id="products" type="java.util.ArrayList<com.es.phoneshop.model.Product>" scope="request"/>
+<fmt:setBundle basename="i18n.messages"/>
 
 <html>
     <head>
@@ -62,7 +63,7 @@
                          <tr>
                              <td>
                                  <c:if test="${not empty error && (id == tempId)}">
-                                    <label style="color: red;width: 200%;"><c:out value="${error}"/><label>
+                                     <label style="color: red;width: 200%;"> <fmt:message key="error.${error}" /><label>
                                  </c:if>
 
                                  <c:if test="${not empty error && (id != tempId)}">
@@ -70,7 +71,7 @@
                                  </c:if>
 
                                  <c:if test="${not empty success && (id == tempId)}">
-                                     <label style="color: green; width: 200%;"><c:out value="${success}"/><label>
+                                     <label style="color: green; width: 200%;"><fmt:message key="success" /><label>
                                  </c:if>
 
                                  <c:if test="${not empty success && (id != tempId)}">

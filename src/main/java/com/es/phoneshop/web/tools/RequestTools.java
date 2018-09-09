@@ -30,7 +30,7 @@ public class RequestTools {
             }
 
         } catch (ParseException e) {
-            setSessionErrorsAttributes(request,  "Not a number", id);
+            setSessionErrorsAttributes(request,  "NaN", id);
         }
     }
     private static void setSessionErrorsAttributes(HttpServletRequest request, String message, Long id) {

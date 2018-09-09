@@ -37,18 +37,18 @@ public class CartService {
         int indexOfCartItem = cart.getCartItems().indexOf(cartItem);
 
         if (quantity <= 0) {
-            throw new IllegalArgumentException("Error (<=0)");
+            throw new IllegalArgumentException("Negative");
         }
 
         if (indexOfCartItem == -1) {
             if (quantity > product.getStock()) {
-                throw new IllegalArgumentException("It's too much");
+                throw new IllegalArgumentException("VeryBig");
             }
             cart.addToCart(cartItem);
         } else {
 
             if (quantity + cart.getCartItems().get(indexOfCartItem).getQuantity() > product.getStock()) {
-                throw new IllegalArgumentException("It's too much");
+                throw new IllegalArgumentException("VeryBig");
             }
             cartItem.setQuantity(quantity + cart.getCartItems().get(indexOfCartItem).getQuantity());
             cart.setCartItem(indexOfCartItem, cartItem);
