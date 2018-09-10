@@ -46,12 +46,13 @@
                     <td><input type="text" value="1" name="quantity" style="width: 40%"></td>
                 </tr>
                 <tr>
-                    <td style="border: 0px solid white; width: 51%">
+                    <td style="border: 0px; width: 51%">
                         <input type="submit" value="Add to cart" style="width: 200%;" />
                     </td>
+                    <td style="border: 0px;"></td>
                 </tr>
                 <tr>
-                    <td style="border: 0px solid white">
+                    <td style="border: 0px;">
                         <c:if test="${not empty error}">
                             <label style="color: red;width: 200%;"> <fmt:message key="error.${error}" /><label>
                         </c:if>
@@ -60,6 +61,8 @@
                             <label style="color: green; width: 200%;"><fmt:message key="success" /><label>
                         </c:if>
                     </td>
+                    <td style="border: 0px"></td>
+                </tr>
             </table>
         </form>
     </body>
