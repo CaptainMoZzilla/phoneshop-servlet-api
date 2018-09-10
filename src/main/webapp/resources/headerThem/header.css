@@ -1,0 +1,11 @@
+nav {
+    float: left;
+}
+nav ul {
+    margin: 0;
+    padding: 0;
+    list-style: left;
+}
+nav li {
+    display: inline-block;
+}
