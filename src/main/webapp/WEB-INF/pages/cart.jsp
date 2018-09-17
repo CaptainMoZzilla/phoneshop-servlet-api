@@ -1,11 +1,12 @@
-<%@ page contentType="text/html;charset=UTF-8" %>
+﻿<%@ page contentType="text/html; charset = UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
-<jsp:useBean id="cart" type="com.es.phoneshop.model.Cart" scope="request"/>
+<jsp:useBean id="cart" type="com.es.phoneshop.model.cart.Cart" scope="request"/>
 
 <html>
     <head>
-        <link href="<c:url value="/resources/tableThem/main.css" />" rel="stylesheet">
+        <link href="<c:url value="/resources/style/CartThem/CartThem.css" />" rel="stylesheet">
     </head>
 
     <title>Cart</title>
@@ -15,37 +16,37 @@
     </header>
 
     <body>
-        <center>
-            <h2>Welcome to your cart</h2>
-        </center>
-        <table>
-            <thead>
+    <div style="text-align: center;">
+        <h2>Welcome to your cart</h2>
+    </div>
+
+    <table>
+        <thead>
+        <tr>
+            <td>Id</td>
+            <td>Code</td>
+            <td>Description</td>
+            <td>Price</td>
+            <td>Currency</td>
+            <td>Quantity</td>
+        </tr>
+        </thead>
+        <c:forEach var="cartItem" items="${cart.cartItems}">
             <tr>
-                <td>Id</td>
-                <td>Code</td>
-                <td>Description</td>
-                <td>Price</td>
-                <td>Currency</td>
-                <td>Quantity</td>
+                <td><c:out value="${cartItem.product.id}"/></td>
+                <td>
+                    <a href = "<c:url value = "/products/${cartItem.product.id}" />"><c:out value="${cartItem.product.code}"/></a>
+                </td>
+                <td><c:out value="${cartItem.product.description}"/></td>
+                <td><fmt:formatNumber value = "${cartItem.product.price}"/></td>
+                <td><c:out value="${cartItem.product.currency}"/></td>
+                <td><fmt:formatNumber value = "${cartItem.quantity}"/></td>
             </tr>
-            </thead>
-            <c:forEach var="cartItem" items="${cart.cartItems}">
-                <tr>
-                    <td><c:out value="${cartItem.product.id}"/></td>
-                    <td>
-                        <a href = "<c:url value = "/products/${cartItem.product.id}" />"><c:out value="${cartItem.product.code}"/></a>
-                    </td>
-                    <td><c:out value="${cartItem.product.description}"/></td>
-                    <td><c:out value="${cartItem.product.price}"/></td>
-                    <td><c:out value="${cartItem.product.currency}"/></td>
-                    <td><c:out value="${cartItem.quantity}"/></td>
-                </tr>
-            </c:forEach>
-        </table>
+        </c:forEach>
+    </table>
     </body>
 
     <footer>
         <jsp:include page="footer.jsp"/>
     </footer>
 </html>
-

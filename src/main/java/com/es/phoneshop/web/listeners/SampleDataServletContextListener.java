@@ -22,17 +22,10 @@ public class SampleDataServletContextListener implements ServletContextListener 
             return;
         }
 
-        dao.save(new Product(1L, "A1B", "desc1", new BigDecimal("123.3"),
-                Currency.getInstance(Locale.UK), 1));
-
-        dao.save(new Product(2L, "A2B", "desc2", new BigDecimal("101.1"),
-                Currency.getInstance(Locale.CANADA), 123));
-
-        dao.save(new Product(3L, "A3B", "desc3", new BigDecimal("12323.3"),
-                Currency.getInstance(Locale.KOREA), 123123));
-
-        dao.save(new Product(4L, "A4B", "desc4", new BigDecimal("112323.3"),
-                Currency.getInstance(Locale.JAPAN), 1321223));
+        for (int i = 1; i <= 12; ++i) {
+            dao.save(new Product((long) i, "A1" + i, "desc" + i, new BigDecimal(i * 100),
+                    Currency.getInstance(Locale.UK), i * 100));
+        }
     }
 
     @Override

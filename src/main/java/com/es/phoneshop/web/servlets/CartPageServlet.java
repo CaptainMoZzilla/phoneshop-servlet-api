@@ -1,6 +1,6 @@
 package com.es.phoneshop.web.servlets;
 
-import com.es.phoneshop.model.CartService;
+import com.es.phoneshop.model.cart.CartService;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;

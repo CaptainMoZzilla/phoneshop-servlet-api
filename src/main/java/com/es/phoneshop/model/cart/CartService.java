@@ -1,27 +1,30 @@
-package com.es.phoneshop.model;
+package com.es.phoneshop.model.cart;
+
+import com.es.phoneshop.model.Product;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 public class CartService {
-    private static volatile CartService instance = new CartService();
+    private static final CartService INSTANCE = new CartService();
     private static final String CART_ATTRIBUTE_NAME = "cart";
 
-    private CartService() { }
+    private CartService() {
+    }
 
     public static CartService getInstance() {
-        return instance;
+        return INSTANCE;
     }
 
     public Cart getCart(HttpServletRequest request) {
         HttpSession session = request.getSession();
         Cart cart = (Cart) session.getAttribute(CART_ATTRIBUTE_NAME);
 
-        if(cart == null) {
-            synchronized (Cart.class) {
-                if(cart == null) {
+        if (cart == null) {
+            synchronized (request.getSession()) {
+                cart = (Cart) session.getAttribute(CART_ATTRIBUTE_NAME);
+                if (cart == null) {
                     cart = new Cart();
-                    CartHelper.addSomeCartItems(cart);
                     session.setAttribute(CART_ATTRIBUTE_NAME, cart);
                 }
             }
@@ -33,11 +36,22 @@ public class CartService {
         CartItem cartItem = new CartItem(product, quantity);
         int indexOfCartItem = cart.getCartItems().indexOf(cartItem);
 
+        if (quantity <= 0) {
+            throw new IllegalArgumentException("Negative");
+        }
+
         if (indexOfCartItem == -1) {
-            cart.getCartItems().add(cartItem);
+            if (quantity > product.getStock()) {
+                throw new IllegalArgumentException("VeryBig");
+            }
+            cart.addToCart(cartItem);
         } else {
+
+            if (quantity + cart.getCartItems().get(indexOfCartItem).getQuantity() > product.getStock()) {
+                throw new IllegalArgumentException("VeryBig");
+            }
             cartItem.setQuantity(quantity + cart.getCartItems().get(indexOfCartItem).getQuantity());
-            cart.getCartItems().set(indexOfCartItem, cartItem);
+            cart.setCartItem(indexOfCartItem, cartItem);
         }
     }
 }
