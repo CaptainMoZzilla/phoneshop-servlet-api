@@ -1,0 +1,30 @@
+.type0 {
+    width: 14%;
+    background: #F5FFFA;
+    padding: 5px;
+
+    border: solid 1px black;
+    float: left;
+    position: center;
+    border-radius: 5px 10px 0 20px;
+    margin-left: 10%;
+    margin-top: 7%;
+}
+.type1 {
+    width: 14%;
+    background: #F5FFFA;
+    padding: 5px;
+    border: solid 1px black;
+    float: left;
+    position: center;
+    border-radius: 5px 10px 0 20px;
+
+    margin-left: 6%;
+    margin-top: 7%;
+}
+.clearer {
+    clear: both;
+    display: block;
+    font-size: 0;
+    line-height: 0;
+}
