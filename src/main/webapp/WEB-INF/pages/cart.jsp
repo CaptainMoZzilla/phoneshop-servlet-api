@@ -19,6 +19,7 @@
 <div style="text-align: center;">
     <h2>Welcome to your cart</h2>
 </div>
+<c:out value="${message}"/>
 <table>
     <thead>
     <tr>

@@ -39,7 +39,10 @@ public class CartPageServlet extends HttpServlet {
             setRequestAttributes(request);
         }
 
+        request.setAttribute("message",request.getAttribute("message"));
+
         request.setAttribute("cart", cartService.getCart(request));
         request.getRequestDispatcher("/WEB-INF/pages/cart.jsp").forward(request, response);
+
     }
 }

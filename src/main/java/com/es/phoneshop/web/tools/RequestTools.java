@@ -37,7 +37,6 @@ public class RequestTools {
         } catch (ParseException e) {
             addSessionAttributes(request, "Incorrect_input", id);
         } catch (IllegalArgumentException e) {
-            System.out.println(e.getMessage());
             addSessionAttributes(request, e.getMessage(), id);
         }
     }
@@ -48,8 +47,8 @@ public class RequestTools {
     }
 
     public static void setRequestAttributes(HttpServletRequest request) {
-        request.setAttribute("message", request.getSession().getAttribute(MESSAGE));
-        request.setAttribute("id", request.getSession().getAttribute(ID));
+        request.setAttribute(MESSAGE, request.getSession().getAttribute(MESSAGE));
+        request.setAttribute(ID, request.getSession().getAttribute(ID));
 
         request.getSession().removeAttribute(MESSAGE);
         request.getSession().removeAttribute(ID);
