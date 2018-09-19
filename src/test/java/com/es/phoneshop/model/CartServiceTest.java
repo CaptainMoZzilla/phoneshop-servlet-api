@@ -1,8 +1,8 @@
 package com.es.phoneshop.model;
 
-import com.es.phoneshop.model.cart.Cart;
-import com.es.phoneshop.model.cart.CartItem;
-import com.es.phoneshop.model.cart.CartService;
+import com.es.phoneshop.cart.Cart;
+import com.es.phoneshop.cart.CartItem;
+import com.es.phoneshop.cart.CartService;
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
@@ -36,53 +36,53 @@ public class CartServiceTest {
     public void clearCarts() {
         cart.getCartItems().clear();
         for (CartItem cartItem : cart.getCartItems()) {
-            cart.removeCartItem(cartItem);
+            cart.remove(cartItem);
         }
 
         for (CartItem cartItem : cartForRequest.getCartItems()) {
-            cartForRequest.removeCartItem(cartItem);
+            cartForRequest.remove(cartItem);
         }
     }
 
     @Test
     public void shouldAddCartItem() {
-        cartService.addToCart(cart, product, quantity);
+        cartService.add(cart, product, quantity);
 
         assertFalse(cart.getCartItems().isEmpty());
     }
 
     @Test
     public void shouldMakeNewQuantity() {
-        cartService.addToCart(cart, product, quantity );
+        cartService.add(cart, product, quantity );
 
-        cartService.addToCart(cart, product, quantity);
+        cartService.add(cart, product, quantity);
 
         assertNotSame(quantity, cart.getCartItems().get(0).getQuantity());
     }
 
     @Test
-    public void addedNegativeQuantity() {
+    public void shouldNotAddProductWithNegativeQuantity() {
         thrown.expect(IllegalArgumentException.class);
-        thrown.expectMessage("Error (<=0)");
+        thrown.expectMessage("Product_has_negative_quantity");
 
-        cartService.addToCart(cart, product, -1);
+        cartService.add(cart, product, -1);
     }
 
     @Test
-    public void addedBigQuantity() {
+    public void shouldNotAddProductWithQuantityBiggerThanStock() {
         thrown.expect(IllegalArgumentException.class);
-        thrown.expectMessage("It's too much");
+        thrown.expectMessage("Product_quantity_bigger_than_stock");
 
-        cartService.addToCart(cart, product, quantity * 100);
+        cartService.add(cart, product, quantity * 100);
     }
 
     @Test
-    public void addedNewBigQuantity() {
+    public void shouldNotMakeNewQuantityBiggerThanStock() {
         thrown.expect(IllegalArgumentException.class);
-        thrown.expectMessage("It's too much");
-        cartService.addToCart(cart, product, quantity);
+        thrown.expectMessage("Product_quantity_bigger_than_stock");
+        cartService.add(cart, product, quantity);
 
-        cartService.addToCart(cart, product, quantity * 100);
+        cartService.add(cart, product, quantity * 100);
     }
 
     @Test

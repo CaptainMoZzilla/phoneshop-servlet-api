@@ -1,11 +1,12 @@
 package com.es.phoneshop.model;
 
+import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class ArrayListProductDao implements ProductDao {
+public class ArrayListProductDao implements ProductDao, Serializable {
 
     private static volatile ProductDao instance;
     private List<Product> products;
