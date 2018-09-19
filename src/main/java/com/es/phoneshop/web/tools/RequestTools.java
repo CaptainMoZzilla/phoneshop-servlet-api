@@ -25,7 +25,6 @@ public class RequestTools {
         Integer quantity;
         try {
             quantity = parseIntegerUsingLocale(request,quantityString);
-            System.out.println(id+" "+ quantity);
             Cart cart = cartService.getCart(request);
 
             if (add) {
@@ -36,7 +35,6 @@ public class RequestTools {
 
             addSessionAttributes(request, "Product_added", id);
         } catch (ParseException e) {
-            System.out.println("Incorrect_input");
             addSessionAttributes(request, "Incorrect_input", id);
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());

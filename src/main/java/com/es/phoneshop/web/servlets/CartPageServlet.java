@@ -36,7 +36,6 @@ public class CartPageServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         if (sessionHasAttributes(request)) {
-            System.out.println("has");
             setRequestAttributes(request);
             System.out.println(request.getAttribute("id") + " "+request.getAttribute("message"));
         }
