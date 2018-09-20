@@ -18,9 +18,9 @@ public class CartPageServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
-        Long productId = Long.valueOf(request.getHeader(PRODUCT_ID_HEADER));
+        Long productId = Long.valueOf(request.getParameter(PRODUCT_ID_HEADER));
 
-        addOrUpdateCartItem(request, productId, request.getHeader(QUANTITY_HEADER),  false);
+        addOrUpdateCartItem(request, productId, request.getParameter(QUANTITY_HEADER), false);
 
         response.sendRedirect(request.getRequestURI());
     }
@@ -28,6 +28,7 @@ public class CartPageServlet extends HttpServlet {
     @Override
     protected void doDelete(HttpServletRequest request, HttpServletResponse response) {
         Long productId = Long.parseLong(request.getHeader(PRODUCT_ID_HEADER));
+
         Cart cart = cartService.getCart(request);
 
         cartService.delete(cart, productId);
@@ -38,8 +39,6 @@ public class CartPageServlet extends HttpServlet {
         if (sessionHasAttributes(request)) {
             setRequestAttributes(request);
         }
-
-        request.setAttribute("message",request.getAttribute("message"));
 
         request.setAttribute("cart", cartService.getCart(request));
         request.getRequestDispatcher("/WEB-INF/pages/cart.jsp").forward(request, response);

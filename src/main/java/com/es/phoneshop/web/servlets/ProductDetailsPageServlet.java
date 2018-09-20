@@ -17,7 +17,7 @@ public class ProductDetailsPageServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
         Long id = Long.valueOf(getId(request));
-        
+
         addOrUpdateCartItem(request, id, request.getParameter("quantity"),true);
 
         response.sendRedirect(request.getRequestURI());

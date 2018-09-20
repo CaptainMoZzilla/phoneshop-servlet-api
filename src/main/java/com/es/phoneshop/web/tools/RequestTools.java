@@ -10,13 +10,12 @@ import java.text.NumberFormat;
 import java.text.ParseException;
 
 public class RequestTools {
-    private static final String MESSAGE = "message";
-    private static final String ID = "id";
+    private static final String MESSAGE_HEADER = "message";
+    private static final String ID_HEADER = "id";
     private static CartService cartService = CartService.getInstance();
     private static ProductDao productDao = ArrayListProductDao.getInstance();
 
     public static Integer parseIntegerUsingLocale(HttpServletRequest request, String number) throws ParseException {
-        //ToDO fix parsing
         NumberFormat numberFormat = NumberFormat.getIntegerInstance(request.getLocale());
         return numberFormat.parse(number).intValue();
     }
@@ -26,14 +25,13 @@ public class RequestTools {
         try {
             quantity = parseIntegerUsingLocale(request,quantityString);
             Cart cart = cartService.getCart(request);
-
             if (add) {
                 cartService.add(cart, productDao.getProduct(id), quantity);
+                addSessionAttributes(request, "Product_added", id);
             } else {
                 cartService.update(cartService.getCart(request), productDao.getProduct(id), quantity);
+                addSessionAttributes(request, "CartItem_edited", id);
             }
-
-            addSessionAttributes(request, "Product_added", id);
         } catch (ParseException e) {
             addSessionAttributes(request, "Incorrect_input", id);
         } catch (IllegalArgumentException e) {
@@ -42,19 +40,19 @@ public class RequestTools {
     }
 
     public static void addSessionAttributes(HttpServletRequest request, String message, Long id) {
-        request.getSession().setAttribute(MESSAGE, message);
-        request.getSession().setAttribute(ID, id.toString());
+        request.getSession().setAttribute(MESSAGE_HEADER, message);
+        request.getSession().setAttribute(ID_HEADER, id.toString());
     }
 
     public static void setRequestAttributes(HttpServletRequest request) {
-        request.setAttribute(MESSAGE, request.getSession().getAttribute(MESSAGE));
-        request.setAttribute(ID, request.getSession().getAttribute(ID));
+        request.setAttribute(MESSAGE_HEADER, request.getSession().getAttribute(MESSAGE_HEADER));
+        request.setAttribute(ID_HEADER, request.getSession().getAttribute(ID_HEADER));
 
-        request.getSession().removeAttribute(MESSAGE);
-        request.getSession().removeAttribute(ID);
+        request.getSession().removeAttribute(MESSAGE_HEADER);
+        request.getSession().removeAttribute(ID_HEADER);
     }
 
     public static boolean sessionHasAttributes(HttpServletRequest request) {
-        return request.getSession().getAttribute(MESSAGE) != null;
+        return request.getSession().getAttribute(MESSAGE_HEADER) != null;
     }
 }

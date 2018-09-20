@@ -9,8 +9,7 @@ public class CartService {
     private static final CartService INSTANCE = new CartService();
     private static final String CART_ATTRIBUTE_NAME = "cart";
 
-    private CartService() {
-    }
+    private CartService() { }
 
     public static CartService getInstance() {
         return INSTANCE;
@@ -49,15 +48,17 @@ public class CartService {
             } else {
                 if (quantity + cart.getCartItems().get(indexOfCartItem).getQuantity() > product.getStock()) {
                     throw new IllegalArgumentException("Product_quantity_bigger_than_stock");
-                } else {
-                    cartItem.setQuantity(quantity + cart.getCartItems().get(indexOfCartItem).getQuantity());
-                    cart.set(indexOfCartItem, cartItem);
                 }
+                CartItem temp = cart.getCartItems().get(indexOfCartItem);
+                temp.setQuantity(quantity + temp.getQuantity());
             }
         }
     }
 
     public void update(Cart cart, Product product, Integer quantity) {
+        if (quantity <= 0) {
+            throw new IllegalArgumentException("Product_has_negative_quantity");
+        }
         synchronized (cart) {
             if (quantity > product.getStock()) {
                 throw new IllegalArgumentException("Product_quantity_bigger_than_stock");
@@ -67,8 +68,8 @@ public class CartService {
                         .findFirst().get().setQuantity(quantity);
             }
         }
-
     }
+
     public void delete(Cart cart, Long productId) {
         synchronized (cart) {
             cart.remove(cart.getCartItems().stream()
