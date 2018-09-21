@@ -14,6 +14,7 @@ import javax.servlet.http.HttpSession;
 import java.math.BigDecimal;
 import java.util.Currency;
 import java.util.Locale;
+import java.util.NoSuchElementException;
 
 import static org.junit.Assert.*;
 
@@ -28,7 +29,7 @@ public class CartServiceTest {
     private long productId = 1L;
     private int quantity = 1;
     private Product product = new Product(productId, "A1B", "desc1", new BigDecimal("123.3"),
-            Currency.getInstance(Locale.UK), 2);
+            Currency.getInstance(Locale.UK), 20);
     @Rule
     public ExpectedException thrown = ExpectedException.none();
 
@@ -109,5 +110,57 @@ public class CartServiceTest {
         Cart tempCart2 = cartService.getCart(request);
 
         assertEquals(tempCart, tempCart2);
+    }
+
+    @Test
+    public void shouldNotUpdateCartItemWithNegativeQuantity() {
+        thrown.expect(IllegalArgumentException.class);
+        thrown.expectMessage("Product_has_negative_quantity");
+        cart.add(new CartItem(product, 1));
+
+        cartService.update(cart, product, -1);
+    }
+
+    @Test
+    public void shouldNotUpdateCartItemWithQuantityBiggerThanStock() {
+        thrown.expect(IllegalArgumentException.class);
+        thrown.expectMessage("Product_quantity_bigger_than_stock");
+        cart.add(new CartItem(product, 1));
+
+        cartService.update(cart, product, product.getStock() + 1);
+    }
+
+    @Test
+    public void shouldUpdateCartItem() {
+        Integer tempQuantity = 3;
+        cart.add(new CartItem(product, 1));
+
+        cartService.update(cart, product, tempQuantity);
+
+        assertEquals(tempQuantity, cart.getCartItems().get(0).getQuantity());
+    }
+
+    @Test
+    public void shouldNotUpdateCartItemWithNullProduct() {
+        thrown.expect(NullPointerException.class);
+
+        cartService.update(cart, null, 1);
+    }
+
+    @Test
+    public void shouldDeleteCartItem() {
+        cartService.add(cart, product, 12);
+
+        cartService.delete(cart, productId);
+
+        assertEquals(0, cart.getCartItems().size());
+    }
+
+    @Test
+    public void shouldNotDeleteCartItemByNullId() {
+        thrown.expect(NoSuchElementException.class);
+        cartService.add(cart, product, 12);
+
+        cartService.delete(cart, null);
     }
 }
