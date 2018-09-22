@@ -9,6 +9,7 @@ public class Order extends AbstractOrder<OrderItem> implements Serializable {
     private String name;
     private String address;
     private String phone;
+    private Integer totalCost;
 
     public Integer getTotalCost() {
         return totalCost;
@@ -17,8 +18,6 @@ public class Order extends AbstractOrder<OrderItem> implements Serializable {
     public void setTotalCost(Integer totalCost) {
         this.totalCost = totalCost;
     }
-
-    private Integer totalCost;
 
     public Order(String id) {
         this.id = id;

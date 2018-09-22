@@ -8,7 +8,6 @@ import java.util.stream.Collectors;
 
 
 public class OrderServiceImpl implements OrderService {
-
     private static final OrderService INSTANCE = new OrderServiceImpl();
     private Map<String, Order> orderMap = new HashMap<>();
 
@@ -35,8 +34,8 @@ public class OrderServiceImpl implements OrderService {
     }
 
     private String generateId() {
-        String UUID = java.util.UUID.randomUUID().toString();
+        String id = java.util.UUID.randomUUID().toString();
 
-        return (orderMap.get(UUID) == null) ? UUID : generateId();
+        return (orderMap.get(id) == null) ? id : generateId();
     }
 }
