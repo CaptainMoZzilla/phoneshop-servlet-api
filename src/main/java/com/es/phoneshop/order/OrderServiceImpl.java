@@ -1,0 +1,42 @@
+package com.es.phoneshop.order;
+
+import com.es.phoneshop.cart.Cart;
+
+import java.util.HashMap;
+import java.util.Map;
+import java.util.stream.Collectors;
+
+
+public class OrderServiceImpl implements OrderService {
+
+    private static final OrderService INSTANCE = new OrderServiceImpl();
+    private Map<String, Order> orderMap = new HashMap<>();
+
+    public static OrderService getInstance() { return INSTANCE; }
+
+    @Override
+    public Order placeOrder(Cart cart) {
+        String id = generateId();
+        Order order = new Order(id);
+
+        order.setOrderItems(cart.getCartItems()
+                .stream()
+                .map(cartItem -> new OrderItem(cartItem.getProduct(), cartItem.getQuantity()))
+                .collect(Collectors.toList()));
+
+        orderMap.put(id, order);
+
+        return order;
+    }
+
+    @Override
+    public Order getOrder(String id) {
+        return orderMap.get(id);
+    }
+
+    private String generateId() {
+        String UUID = java.util.UUID.randomUUID().toString();
+
+        return (orderMap.get(UUID) == null) ? UUID : generateId();
+    }
+}

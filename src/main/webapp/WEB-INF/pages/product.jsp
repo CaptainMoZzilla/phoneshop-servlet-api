@@ -11,12 +11,12 @@
         <link href="<c:url value="/resources/style/CartThem/CartThem.css" />" rel="stylesheet">
     </head>
 
-    <body>
+    <body style="background: #C5CAE9;">
         <form method="post">
             <div style="text-align: center;">
                 <h2>Info</h2>
             </div>
-            <table>
+            <table style="background: #E8EAF6">
                 <tr>
                     <td>Id</td>
                     <td><c:out value="${product.id}"/></td>

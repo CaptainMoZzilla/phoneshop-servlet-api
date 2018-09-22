@@ -19,13 +19,13 @@
         </div>
     </header>
 
-    <body style="background: #F3E5F5;">
+    <body style="background: #C5CAE9;">
         <c:forEach var="product" items="${products}">
 
             <form method="post" name="${product.id}">
                 <c:set var="tempId" value="${product.id}"/>
 
-                <div class="type${products.indexOf(product)%4 == 0 ? 0 : 1}" style="background: #FFFDE7">
+                <div class="type${products.indexOf(product)%4 == 0 ? 0 : 1}" style="background: #E8EAF6">
                     <table>
                         <tr>
                             <td>Id</td>

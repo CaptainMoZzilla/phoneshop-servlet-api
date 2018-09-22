@@ -20,37 +20,67 @@
     <servlet-name>productList</servlet-name>
     <url-pattern>/products</url-pattern>
   </servlet-mapping>
+    
+    <filter>
+        <filter-name>DosFilter</filter-name>
+        <filter-class>com.es.phoneshop.web.filters.DosFilter</filter-class>
+    </filter>
+
+    <filter-mapping>
+        <filter-name>DosFilter</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
 
     <servlet>
         <servlet-name>productDetailsPageServlet</servlet-name>
         <servlet-class>com.es.phoneshop.web.servlets.ProductDetailsPageServlet</servlet-class>
     </servlet>
-
+    
     <servlet-mapping>
         <servlet-name>productDetailsPageServlet</servlet-name>
         <url-pattern>/products/*</url-pattern>
     </servlet-mapping>
-
+    
     <servlet>
         <servlet-name>Cart</servlet-name>
         <servlet-class>com.es.phoneshop.web.servlets.CartPageServlet</servlet-class>
     </servlet>
-
+    
     <servlet-mapping>
         <servlet-name>Cart</servlet-name>
         <url-pattern>/cart</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>Checkout</servlet-name>
+        <servlet-class>com.es.phoneshop.web.servlets.CheckoutPageServlet</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>Checkout</servlet-name>
+        <url-pattern>/checkout</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>OrderOverviewPage</servlet-name>
+        <servlet-class>com.es.phoneshop.web.servlets.OrderOverviewPageServlet</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>OrderOverviewPage</servlet-name>
+        <url-pattern>/checkout/*</url-pattern>
     </servlet-mapping>
 
     <error-page>
         <error-code>404</error-code>
         <location>/WEB-INF/pages/errorCode404.jsp</location>
     </error-page>
-
+    
     <error-page>
         <error-code>500</error-code>
         <location>/WEB-INF/pages/errorCode500.jsp</location>
     </error-page>
-
+    
     <context-param>
         <param-name>ADD_SAMPLE_DATA</param-name>
         <param-value>true</param-value>
