@@ -54,7 +54,7 @@ public class CartServiceTest {
 
     @Test
     public void shouldMakeNewQuantity() {
-        cartService.add(cart, product, quantity );
+        cartService.add(cart, product, quantity);
 
         cartService.add(cart, product, quantity);
 

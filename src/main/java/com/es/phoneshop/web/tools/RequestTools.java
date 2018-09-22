@@ -6,6 +6,7 @@ import com.es.phoneshop.model.ArrayListProductDao;
 import com.es.phoneshop.model.ProductDao;
 
 import javax.servlet.http.HttpServletRequest;
+import java.text.DecimalFormat;
 import java.text.NumberFormat;
 import java.text.ParseException;
 
@@ -16,8 +17,14 @@ public class RequestTools {
     private static ProductDao productDao = ArrayListProductDao.getInstance();
 
     public static Integer parseIntegerUsingLocale(HttpServletRequest request, String number) throws ParseException {
-        NumberFormat numberFormat = NumberFormat.getIntegerInstance(request.getLocale());
-        return numberFormat.parse(number).intValue();
+        NumberFormat decimalFormat = DecimalFormat.getInstance(request.getLocale());
+        Integer value = decimalFormat.parse(number).intValue();
+
+        if (decimalFormat.format(value).compareTo(number) != 0) {
+            throw new ParseException("Incorrect input", value);
+        }
+
+        return value;
     }
     
     public static void addOrUpdateCartItem(HttpServletRequest request, Long id, String quantityString,  boolean add) {
