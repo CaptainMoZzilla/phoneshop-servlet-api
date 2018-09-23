@@ -11,6 +11,8 @@ public class OrderServiceImpl implements OrderService {
     private static final OrderService INSTANCE = new OrderServiceImpl();
     private Map<String, Order> orderMap = new HashMap<>();
 
+    private OrderServiceImpl() {}
+
     public static OrderService getInstance() { return INSTANCE; }
 
     @Override
