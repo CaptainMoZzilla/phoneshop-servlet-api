@@ -39,18 +39,19 @@ public class CartService {
             if (quantity <= 0) {
                 throw new IllegalArgumentException("Product_has_negative_quantity");
             }
-
-            if (indexOfCartItem == -1) {
-                if (quantity > product.getStock()) {
-                    throw new IllegalArgumentException("Product_quantity_bigger_than_stock");
+            synchronized (cart) {
+                if (indexOfCartItem == -1) {
+                    if (quantity > product.getStock()) {
+                        throw new IllegalArgumentException("Product_quantity_bigger_than_stock");
+                    }
+                    cart.add(cartItem);
+                } else {
+                    if (quantity + cart.getCartItems().get(indexOfCartItem).getQuantity() > product.getStock()) {
+                        throw new IllegalArgumentException("Product_quantity_bigger_than_stock");
+                    }
+                    CartItem temp = cart.getCartItems().get(indexOfCartItem);
+                    temp.setQuantity(quantity + temp.getQuantity());
                 }
-                cart.add(cartItem);
-            } else {
-                if (quantity + cart.getCartItems().get(indexOfCartItem).getQuantity() > product.getStock()) {
-                    throw new IllegalArgumentException("Product_quantity_bigger_than_stock");
-                }
-                CartItem temp = cart.getCartItems().get(indexOfCartItem);
-                temp.setQuantity(quantity + temp.getQuantity());
             }
         }
     }
