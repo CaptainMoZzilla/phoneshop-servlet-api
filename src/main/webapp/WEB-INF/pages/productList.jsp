@@ -20,6 +20,11 @@
     </header>
 
     <body style="background: #C5CAE9;">
+        <form method="post">
+            <input type="text" id="search-text" name="search-text" value="${userInput == null ? null : userInput}" >
+            <input type="submit" value="Search">
+        </form>
+
         <c:forEach var="product" items="${products}">
 
             <form method="post" name="${product.id}">

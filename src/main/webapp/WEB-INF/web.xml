@@ -71,6 +71,16 @@
         <url-pattern>/checkout/*</url-pattern>
     </servlet-mapping>
 
+    <servlet>
+        <servlet-name>ComparePage</servlet-name>
+        <servlet-class>com.es.phoneshop.web.servlets.ComparePageServlet</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>ComparePage</servlet-name>
+        <url-pattern>/comparePage</url-pattern>
+    </servlet-mapping>
+
     <error-page>
         <error-code>404</error-code>
         <location>/WEB-INF/pages/errorCode404.jsp</location>

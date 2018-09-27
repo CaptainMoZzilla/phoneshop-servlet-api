@@ -8,7 +8,7 @@
                  height="50" >
         </a>
     </div>
-
+    <a href = "<c:url value = "/comparePage" />">To compare page</a>
     <div style="float: right;">
         <a href= "<c:url value = "/cart"/>">
             <img src="  http://www.free-icons-download.net/images/shopping-cart-logo-icon-73951.png" width="50"

@@ -52,14 +52,25 @@
                     <td style="border: 0px;"></td>
                 </tr>
                 <tr>
+                    <td style="border: white">
+                        <input type="button" onclick="javascript:document.forms['toCompare'].submit()" value="Add to compare page" style="width: 200%;" />
+                    </td>
+                </tr>
+                <tr>
                     <td style="border: 0px;">
                         <c:if test="${not empty message}">
                             <label style="color: ${message == "Product_added" ? "green" : "red"};width: 200%;" id="test"> <fmt:message key="message.${message}" /><label>
+                        </c:if>
+                        <c:if test="${not empty compare}">
+                            <label style="color: green"> <c:out value="${compare}"/> </label>
                         </c:if>
                     </td>
                     <td style="border: 0px"></td>
                 </tr>
             </table>
+        </form>
+        <form id="toCompare" name="toCompare" method="post">
+
         </form>
     </body>
 

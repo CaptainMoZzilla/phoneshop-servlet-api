@@ -33,27 +33,27 @@
             <td>Remove</td>
         </tr>
         </thead>
-        <c:forEach var="cartItem" items="${cart.cartItems}">
-            <tr id="${cartItem.product.id}">
-                <td><c:out value="${cartItem.product.id}"/></td>
+        <c:forEach var="product" items="${cart.cartItems}">
+            <tr id="${product.product.id}">
+                <td><c:out value="${product.product.id}"/></td>
                 <td>
-                    <a href = "<c:url value = "/products/${cartItem.product.id}" />"><c:out value="${cartItem.product.code}"/></a>
+                    <a href = "<c:url value = "/products/${product.product.id}" />"><c:out value="${product.product.code}"/></a>
                 </td>
-                <td><c:out value="${cartItem.product.description}"/></td>
-                <td><fmt:formatNumber value = "${cartItem.product.price}"/></td>
-                <td><c:out value="${cartItem.product.currency}"/></td>
+                <td><c:out value="${product.product.description}"/></td>
+                <td><fmt:formatNumber value = "${product.product.price}"/></td>
+                <td><c:out value="${product.product.currency}"/></td>
                 <td>
-                    <form method="post" name="form${cartItem.product.id}">
-                        <input type="text" id="quantity" name="quantity" value="<fmt:formatNumber value = "${cartItem.quantity}"/>" onchange="javascript:document.forms['form${cartItem.product.id}'].submit()">
-                        <input type="hidden" name="productId" value="${cartItem.product.id}">
+                    <form method="post" name="form${product.product.id}">
+                        <input type="text" id="quantity" name="quantity" value="<fmt:formatNumber value = "${product.quantity}"/>" onchange="javascript:document.forms['form${product.product.id}'].submit()">
+                        <input type="hidden" name="productId" value="${product.product.id}">
                     </form>
 
-                    <c:if test="${not empty message && (id == cartItem.product.id)}">
+                    <c:if test="${not empty message && (id == product.product.id)}">
                         <label for="quantity" style="color: ${message == "CartItem_edited" ? "green" : "red"};width: 200%;" id="test"> <fmt:message key="message.${message}" /><label>
                     </c:if>
                 </td>
                 <td>
-                    <button type="button" onclick="deleteCartItem(${cartItem.product.id});">Delete</button>
+                    <button type="button" onclick="deleteCartItem(${product.product.id});">Delete</button>
                 </td>
             </tr>
         </c:forEach>
