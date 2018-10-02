@@ -1,0 +1,22 @@
+.account-top span,.register-top span{
+    display: block;
+    padding: 0 0 0.5em;
+}
+
+.account-top input[type="submit"],.register-top input[type="submit"]{
+    outline:none;
+    padding:7px 20px;
+    color:#FFF;
+    cursor:pointer;
+    background:#d2232a;
+    border:none;
+    margin:1em auto 0;
+
+}
+
+.account-top input[type="submit"]:hover,.register-top input[type="submit"]:hover{
+    background:#0087d5;
+}
+.register-top input[type="submit"]{
+    width:13%;
+}

@@ -16,12 +16,12 @@
     <jsp:include page="/WEB-INF/pages/header.jsp"/>
 </header>
 
-<body>
+<body style="background: #C5CAE9;">
     <div style="text-align: center;">
         <h2>Welcome to your cart</h2>
     </div>
 
-    <table>
+    <table style="background: #E8EAF6">
         <thead>
         <tr>
             <td>Id</td>
@@ -58,6 +58,10 @@
             </tr>
         </c:forEach>
     </table>
+    <div style="text-align: center;">
+        <a href="/phoneshop-servlet-api/checkout" target="_parent"><button style="outline:none; padding:7px 20px; color:#FFF; cursor:pointer; background:#d2232a; border:none; margin:1em auto 0;">To checkout page!</button></a>
+    </div>
+
 </body>
 
 <footer>

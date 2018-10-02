@@ -23,7 +23,6 @@ public class RequestTools {
         if (decimalFormat.format(value).compareTo(number) != 0) {
             throw new ParseException("Incorrect input", value);
         }
-
         return value;
     }
     
