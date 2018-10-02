@@ -14,19 +14,18 @@
 
     <header>
         <jsp:include page="header.jsp"/>
+        <div style="text-align: center;">
+            <h2 style="color: #000000;">Product List Page</h2>
+        </div>
     </header>
 
-    <body>
-        <div style="text-align: center;">
-          <h2>Product List Page</h2>
-        </div>
-
+    <body style="background: #F3E5F5;">
         <c:forEach var="product" items="${products}">
 
             <form method="post" name="${product.id}">
                 <c:set var="tempId" value="${product.id}"/>
 
-                <div class="type${products.indexOf(product)%4 == 0 ? 0 : 1}">
+                <div class="type${products.indexOf(product)%4 == 0 ? 0 : 1}" style="background: #FFFDE7">
                     <table>
                         <tr>
                             <td>Id</td>
@@ -57,25 +56,17 @@
                         </tr>
                         <tr>
                             <td>
-                                <input type="submit" value="Add to cart" style="width: 200%;" />
+                                <input type="submit" value="Add to cart" style="width: 200%; border-radius: 10px;"/>
                             </td>
                         </tr>
                          <tr>
                              <td>
-                                 <c:if test="${not empty error && (id == tempId)}">
-                                     <label style="color: red;width: 200%;"> <fmt:message key="error.${error}" /><label>
+                                 <c:if test="${not empty message && (id == tempId)}">
+                                     <label style="color: ${message == "Product_added" ? "green" : "red"};width: 200%;" id="test"> <fmt:message key="message.${message}" /><label>
                                  </c:if>
 
-                                 <c:if test="${not empty error && (id != tempId)}">
+                                 <c:if test="${not empty message && (id != tempId)}">
                                     <br>
-                                 </c:if>
-
-                                 <c:if test="${not empty success && (id == tempId)}">
-                                     <label style="color: green; width: 200%;"><fmt:message key="success" /><label>
-                                 </c:if>
-
-                                 <c:if test="${not empty success && (id != tempId)}">
-                                     <br>
                                  </c:if>
                              </td>
                          </tr>

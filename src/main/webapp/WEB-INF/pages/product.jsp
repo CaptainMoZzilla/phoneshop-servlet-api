@@ -53,12 +53,8 @@
                 </tr>
                 <tr>
                     <td style="border: 0px;">
-                        <c:if test="${not empty error}">
-                            <label style="color: red;width: 200%;"> <fmt:message key="error.${error}" /><label>
-                        </c:if>
-
-                        <c:if test="${not empty success}">
-                            <label style="color: green; width: 200%;"><fmt:message key="success" /><label>
+                        <c:if test="${not empty message}">
+                            <label style="color: ${message == "Product_added" ? "green" : "red"};width: 200%;" id="test"> <fmt:message key="message.${message}" /><label>
                         </c:if>
                     </td>
                     <td style="border: 0px"></td>
